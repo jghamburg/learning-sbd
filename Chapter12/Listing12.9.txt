@@ -1,0 +1,6 @@
+Listing 12.9  Calling the Order object
+    public void addToOrder(String orderId, String isbn, int qty) {
+        Order order = orderservice.find(orderId);
+        order.addBook(new ISBN(isbn), new Quantity(qty));
+    }
+

@@ -1,0 +1,22 @@
+Listing 7.6  Business rule upheld by a service method
+class Order {
+    final public CustomerID custid;
+    Order(CustomerID custid) {
+        Validate.notNull(custid);
+        this.custid = custid;
+    }
+    ...
+}
+
+class SomeOtherPartOfFlow {
+    void processOrderShipment(Order order) {
+        if(order.getPaid()) {       
+
+            warehouse.prepareShipment(order.custid, order.getOrderitems());
+        } else {
+        ...                
+        }
+        ... 
+    }
+}
+

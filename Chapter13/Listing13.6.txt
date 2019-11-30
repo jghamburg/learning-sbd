@@ -1,0 +1,14 @@
+Listing 13.6  Master log with intermixed JSON entries
+{
+  "category":"audit",
+  "message":"Failed to cancel booking",
+  "bookingId":"#67qTMBqT96",
+  "username":"jane.doe01@example.com",
+  "status":"Already checked out"
+}
+{
+  "category":"behavior",
+  "message":"Failed to cancel booking",
+  "status":"Already checked out"
+}
+

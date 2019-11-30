@@ -1,0 +1,9 @@
+Listing 5.2  Hardening the API with domain primitives
+import static org.apache.commons.lang3.Validate.notNull;
+
+void sendAuditLogsToServerAt(InternalAddress serverAddress) {
+   notNull(serverAddress);     
+
+   // Retrieve logs and send them to server
+}
+

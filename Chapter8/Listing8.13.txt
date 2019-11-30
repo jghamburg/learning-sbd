@@ -1,0 +1,77 @@
+Listing 8.13  Testing enabled HTTP methods
+import org.junit.Test;
+import java.net.URI;
+ 
+import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
+import static org.apache.commons.lang3.Validate.notNull;
+import static org.junit.Assert.assertEquals;
+ 
+public class OnlyExpectedMethodsAreEnabledTest {
+ 
+   enum HTTPMethod {
+      GET, HEAD, POST, PUT, DELETE, CONNECT, OPTIONS, TRACE
+   }
+ 
+   URI uri;
+   List<Result> results;
+ 
+   @Test
+   public void verify_only_expected_HTTP_methods_are_enabled() {
+      givenEndpoint("http://example.com/endpoint"); 
+ 
+      whenTestingMethods(HTTPMethod.values());      
+ 
+      thenTheOnlyMethodsEnabledAre(GET, PUT, HEAD); 
+   }
+ 
+   void givenEndpoint(final String uri) {
+      this.uri = URI.create(uri);
+   }
+ 
+   void whenTestingMethods(final HTTPMethod... methods) {
+      results = Arrays.stream(methods)
+                      .distinct()
+                      .map(method -> getStatus(method, uri))
+                      .collect(toList());
+   }
+ 
+   void thenTheOnlyMethodsEnabledAre(final HTTPMethod... methods) {
+      final Set<HTTPMethod> enabled = enabledHttpMethods();
+      assertEquals(new HashSet<>(asList(methods)), enabled);
+   }
+ 
+   Set<HTTPMethod> enabledHttpMethods() {
+      return results.stream()
+                    .filter(r -> isEnabled(r.status))
+                    .map(r -> r.method)
+                    .collect(toSet());
+   }
+ 
+   static class Result {
+ 
+      final int status;
+      final HTTPMethod method;
+ 
+      Result(final int status, final HTTPMethod method) {
+         this.status = status;
+         this.method = notNull(method);
+      }
+ 
+   }
+ 
+   boolean isEnabled(final int statusCode) {
+     // Check if the status code is considered     
+     // as "enabled"
+   }
+ 
+   Result getStatus(final HTTPMethod method, final URI uri) {
+     // Call the URI with the given HTTP method    
+     // and return the status
+   }
+ 
+   // ...
+ 
+}
+

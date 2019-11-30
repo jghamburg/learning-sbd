@@ -1,0 +1,52 @@
+Listing 8.10  OrderService with a new feature placed in a toggle
+import static org.apache.commons.lang3.Validate.notNull;
+ 
+public class OrderService {
+ 
+   // ...
+ 
+   public void placeOrder(final Order order) {
+      notNull(order);
+ 
+      if (OrderMode.OLD.equals(toggleService.orderMode())) {
+         orderBackend.process(order);              
+      }
+      else if (OrderMode.NEW.equals(toggleService.orderMode())) {
+         orderBackend.process(order);
+         biBackend.record(order);                  
+      }
+      else {
+         throw new IllegalStateException("No supported order mode");
+      }
+   }
+ 
+}
+ 
+public class ToggleService {                       
+ 
+   public enum OrderMode {
+      OLD("old"),
+      NEW("new");
+ 
+      private final String key;
+ 
+      OrderMode(final String key) {
+         this.key = key;
+      }
+ 
+      public String key() {
+         return key;
+      }
+   }
+ 
+   private OrderMode orderMode = OLD;
+ 
+   public OrderMode orderMode() {
+      return orderMode;
+   }
+ 
+   public void setOrderMode(final OrderMode orderMode) {
+      this.orderMode = notNull(orderMode);
+   }
+}
+

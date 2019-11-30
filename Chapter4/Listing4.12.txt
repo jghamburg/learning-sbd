@@ -1,0 +1,30 @@
+Listing 4.12  CatNameList  with contract enforced through fast fails
+import org.apache.commons.lang3.Validate.*;
+
+public class CatNameList {
+    private final List<String> catNames = new ArrayList<String>();
+
+    public void queueCatName(String name) {        
+        notNull(name);                             
+        matchesPattern(name,".*s.*",
+                       "Cat name must contain s"); 
+        isTrue(!catNames.contains(name),
+               "Cat name already queued");         
+        catNames.add(name);
+    }
+
+    public String nextCatName() {
+        validState(!catNames.isEmpty());           
+        return catNames.get(0);
+    }
+
+    public void dequeueCatName() {
+        validState(!catNames.isEmpty());           
+        catNames.remove(0);
+    }
+
+    public int size() {                            
+        return catNames.size();
+    }
+}
+

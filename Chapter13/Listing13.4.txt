@@ -1,0 +1,20 @@
+Listing 13.4  Logging categorized data to the logging system
+import static org.apache.commons.lang3.Validate.notNull;
+ 
+private final Logger logger ...                    
+ 
+public void bookingCancellationFailed(final BookingId id,
+                                      final Result result,
+                                      final User user) {
+    notNull(id);
+    notNull(result);
+    notNull(user);
+ 
+    logger.log(auditData(id, result, user));       
+    logger.log(behaviorData(result));              
+ 
+    if (result.isError()) {
+        logger.log(errorData(result));             
+    }
+}
+

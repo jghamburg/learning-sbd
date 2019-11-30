@@ -1,0 +1,52 @@
+Listing 9.8  Using exceptions for business logic
+import static org.apache.commons.lang3.Validate.notNull;
+ 
+public final class Account {
+ 
+  public void transfer(final Amount amount,
+                       final Account toAccount)
+        throws InsufficientFundsException {
+    notNull(amount);
+    notNull(toAccount);
+ 
+    if (balance().isLessThan(amount)) {          
+      throw new InsufficientFundsException();    
+    }
+ 
+    executeTransfer(amount, toAccount);          
+  }
+ 
+  public Amount balance() {
+      return calculateBalance();
+  }
+ 
+  // ...
+}
+ 
+-------------------------------------------------
+ 
+import static org.apache.commons.lang3.Validate.isTrue;
+import static org.apache.commons.lang3.Validate.notNull;
+ 
+public final class Amount implements Comparable<Amount> {
+   private final long value;
+ 
+   public Amount(final long value) {
+      isTrue(value >= 0, "A price cannot be negative");
+      this.value = value;
+   }
+ 
+   @Override
+   public int compareTo(final Amount that) {
+      notNull(that);
+      return Long.compare(value, that.value);
+   }
+ 
+   public boolean isLessThan(final Amount that) {
+      return compareTo(that) < 0;
+   }
+ 
+   // ...
+ 
+}
+

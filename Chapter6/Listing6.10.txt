@@ -1,0 +1,25 @@
+Listing 6.10  Person class that shares one immutable object and one mutable one
+class Person {
+    private String name;
+    private StringBuffer title;
+
+    String name() {
+        return name;         
+    }
+
+    StringBuffer title() {   
+        return title;
+    }
+}
+
+String personalizedLetter(Person p) {
+    String greeting =
+        p.name()
+         .concat(", we'd like to make you an offer"); 
+    String salute =
+        p.title()
+          .append(", we'd like to make you an offer")
+          .toString();       
+    ...
+}
+

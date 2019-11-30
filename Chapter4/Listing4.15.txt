@@ -1,0 +1,14 @@
+Listing 4.15  ISBN class with a regexp to control lexical content
+import org.apache.commons.lang3.Validate.*;
+
+public class ISBN {
+    private final String isbn;
+
+    public ISBN(final String isbn) {
+        notNull(isbn);
+        inclusiveBetween(10, 10,isbn.length());    
+        isTrue(isbn.matches("[0-9X]*"));           
+        this.isbn = isbn;
+    }
+}
+

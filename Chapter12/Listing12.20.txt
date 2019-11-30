@@ -1,0 +1,7 @@
+Listing 12.20  Summing up the purchase orders for all suppliers
+        List<PurchaseOrder> purchases =
+                procurementService.allPurchases(); 
+        Amount sum = purchases.stream().
+                map(PurchaseOrder::price).
+                reduce(Amount.ZERO, Amount::add);  
+

@@ -1,0 +1,57 @@
+Listing 6.7  Builder of accounts implemented as an inner class
+import static org.apache.commons.lang3.Validate.notNull;
+import static org.apache.commons.lang3.Validate.validState;
+
+public class Account {
+    private final AccountNumber number;
+    private final LegalPerson owner;
+    private Percentage interest;
+    private Money creditLimit;
+    private AccountNumber fallbackAccount;
+
+    private Account(AccountNumber number,
+                    LegalPerson owner,
+                    Percentage interest) {      
+        this.number = notNull(number);
+        this.owner = notNull(owner);
+        this.interest = notNull(interest);
+    }
+
+    ...
+
+    private void checkInvariants() throws IllegalStateException {
+        validState(fallbackAccount != null
+                    ^ creditLimit != null);     
+    }
+
+    public static class Builder {               
+        private Account product;
+
+        public Builder(AccountNumber number,
+                       LegalPerson owner,
+                       Percentage interest) {   
+            product = new Account(number, owner, interest);
+        }
+
+        public Builder withCreditLimit(Money creditLimit) {
+            validState(product != null);                    
+            product.creditLimit = creditLimit;
+            return this;                        
+        }
+
+        public Builder withFallbackAccount(AccountNumber fallbackAccount) {
+            validState(product != null);                    
+            product.fallbackAccount = fallbackAccount;
+            return this;                        
+        }
+
+        public Account build() {
+            validState(product != null);
+            product.checkInvariants();          
+            Account result = product;
+            product = null;                     
+            return result;                      
+        }
+    }
+}
+

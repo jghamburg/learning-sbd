@@ -1,0 +1,17 @@
+Listing 8.2  EmailAddress meeting the normal behavior criteria
+import static org.apache.commons.lang3.Validate.matchesPattern;
+ 
+public final class EmailAddress {
+ 
+   public final String value;
+ 
+   public EmailAddress(final String value) {
+      matchesPattern(value.toLowerCase(),           
+        "^[a-z0-9]+\\.?[a-z0-9]+@\\bhospital.com$", 
+        "Illegal email address");
+ 
+      this.value = value.toLowerCase();             
+   }
+   ...
+}
+

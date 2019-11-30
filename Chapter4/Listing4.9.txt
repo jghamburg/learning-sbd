@@ -1,0 +1,21 @@
+Listing 4.9  Enforcing contract for constructor
+import org.apache.commons.lang3.Validate.*;
+
+enum Sex {MALE, FEMALE;}
+
+public class Cat {
+
+    private String name;
+    private final Sex sex;
+
+    public Cat(String name, Sex sex) {
+        notNull(name);                             
+        matchesPattern(name,".*s.*",
+                       "Cat name must contain s"); 
+        notNull(sex);                              
+        this.name = name;
+        this.sex = sex;
+    }
+    ...
+}
+

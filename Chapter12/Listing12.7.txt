@@ -1,0 +1,9 @@
+Listing 12.7  Serializing the table reservation object as a String
+public TableReservation fetch(final String reservationId) {
+   logger.info("Fetching table reservation: " + reservationId);
+   final TableReservation tableReservation =
+            repository.reservation(reservationId); 
+   logger.info("Received " + tableReservation);    
+   return tableReservation;
+}
+

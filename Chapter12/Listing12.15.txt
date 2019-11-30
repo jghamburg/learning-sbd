@@ -1,0 +1,10 @@
+Listing 12.15  Expressing the same idea in two different ways
+    if((input.length() == 5)    
+        && Integer.parseInt(input) > 0) {
+         ...
+     }
+ 
+    if(zipcodeSender.matches("[0-9]{5}")) { 
+        ...
+    }
+

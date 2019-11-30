@@ -1,0 +1,33 @@
+Listing 7.5  Entity state rule upheld by entity method
+public class Person {
+    private boolean married;
+
+    public Person(boolean married) {
+        this.married = married;
+    }
+
+    public boolean isMarried() {
+        return married;
+    }
+
+    public void date(Person datee) {     
+        if (!isMarried()) {              
+            dinnerAndDrinks();
+        } else {                         
+            logger.warn("bad egg");
+        }
+    }
+
+    private void dinnerAndDrinks() {}
+}
+
+public class Work {
+    Person boss = new Person(true);
+    Person employee = new Person(false);
+
+    void afterwork() {
+        // boss attempts to date
+        boss.date(employee);
+    }
+}
+

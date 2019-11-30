@@ -1,0 +1,10 @@
+Listing 6.4  Checking advanced constraints in separate method
+import static org.apache.commons.lang3.Validate.validState;
+
+    private void checkInvariants()
+        throws IllegalStateException {   
+
+        validState(fallbackAccount != null
+                    ^ creditLimit != null);  
+    }
+

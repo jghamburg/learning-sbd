@@ -1,0 +1,19 @@
+Listing 13.1  Designing the API: CRUD operations versus domain operations
+public interface CustomerManagementApiV1 {         
+ 
+   void setCustomerActivated(CustomerId id, boolean activated);
+ 
+   boolean isActivated(CustomerId id);
+ 
+}
+ 
+public interface CustomerManagementApiV2 {         
+ 
+   void addLegalAgreement(CustomerId id, AgreementId agreementId);
+ 
+   void addConfirmedPayment(ConfirmedPaymentId confirmedPaymentId);
+ 
+   boolean isActivated(CustomerId id);
+ 
+}
+

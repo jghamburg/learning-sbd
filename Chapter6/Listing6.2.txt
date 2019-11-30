@@ -1,0 +1,67 @@
+Listing 6.2  Constructor takes the mandatory attributes, methods the optional
+import org.apache.commons.lang3.Validate.*;
+
+public class Account {
+    private AccountNumber number;
+    private LegalPerson owner;
+    private Percentage interest;
+    private Money creditLimit;
+    private AccountNumber fallbackAccount;
+
+    public Account(AccountNumber number,
+                    LegalPerson owner,
+                    Percentage interest) {      
+        this.number = notNull(number);          
+        this.owner = notNull(owner);            
+        this.interest = notNull(interest);      
+    }
+
+    protected Account() {}                      
+
+    public AccountNumber number() { ... }       
+
+    public LegalPerson owner() { ... }
+
+    public void changeInterest(
+                    Percentage interest) {      
+        notNull(interest);                      
+        this.interest = interest;
+    }
+
+    public Money creditlimit() { ... }
+
+    public void changeCreditLimit(
+                    Money creditLimit) {        
+        notNull(creditLimit);
+        this.creditLimit = creditLimit;
+    }
+
+    public AccountNumber fallbackAccount() {
+        return fallbackAccount;
+    }
+
+    public void changeFallbackAccount(AccountNumber fallbackAccount) {
+        notNull(fallbackAccount);
+        this.fallbackAccount = Validate.notNull(fallbackAccount);
+    }
+
+    public void clearFallbackAccount() {
+        this.fallbackAccount = null;
+    }
+}
+
+class AccountService {
+    void openAccount() {
+        AccountNumber number = ...
+        LegalPerson accountowner = ...
+        Percentage interest = ...
+        Money limit = ...                       
+        Account account =
+            new Account(number,
+                        accountowner,
+                        interest);              
+        account.changeCreditLimit(limit);       
+        accountRepostitory.registerNew(account);
+    }
+}
+

@@ -1,0 +1,23 @@
+Listing 7.7  MaritalStatus helper object encapsulating the rules of marital status
+import static org.apache.commons.lang3.Validate.validState;
+
+public class MaritalStatus {
+
+    private boolean married = false;              
+
+    public void date() {                          
+        validState(!married,                      
+                "Not appropriate to date when married");
+    }
+
+    public void marry() {
+        validState(!married);                     
+        married = true;
+    }
+
+    public void divorce() {
+        validState(married);                      
+        married = false;
+    }
+}
+

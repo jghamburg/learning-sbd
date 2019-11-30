@@ -1,0 +1,51 @@
+Listing 5.3  Storing sensitive data in a read-once object
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import java.util.concurrent.atomic.AtomicReference;
+
+import static org.apache.commons.lang3.Validate.notNull;
+
+public final class SensitiveValue     
+      implements Externalizable {     
+
+   private transient final
+            AtomicReference<String> value;      
+
+   public SensitiveValue(final String value) {
+     validate(value);                           
+     this.value = new AtomicReference<>(value);
+   }
+
+   public String value() {
+      return notNull(value.getAndSet(null),
+         "Sensitive value has already been consumed");  
+   }
+
+   @Override
+   public String toString() {
+      return "SensitiveValue{value=*****}";     
+   }
+
+   @Override
+   public void writeExternal(final ObjectOutput out) {
+      deny();      
+   }
+
+   @Override
+   public void readExternal(final ObjectInput in) {
+      deny();      
+   }
+
+   private static String validate(final String value) {
+      // Check domain-specific invariants
+      return notBlank(value).trim();
+   }
+
+   private static void deny() {
+      throw new UnsupportedOperationException(
+            "Not allowed on sensitive value");
+   }
+}
+

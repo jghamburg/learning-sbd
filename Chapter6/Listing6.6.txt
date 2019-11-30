@@ -1,0 +1,12 @@
+Listing 6.6  Account with a credit limit constructed using AccountBuilder
+    void openAccount() {
+        AccountBuilder accountBuilder =           
+                new AccountBuilder(number,        
+                                   accountOwner,
+                                   interest);
+        accountBuilder.withCreditLimit(limit);    
+                                                  
+        Account account = accountBuilder.build(); 
+        ...
+    }
+

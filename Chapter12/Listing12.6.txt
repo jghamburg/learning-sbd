@@ -1,0 +1,8 @@
+Listing 12.6  Logging of unchecked input when fetching a table reservation
+public TableReservation fetch(final String reservationId) {
+   logger.info("Fetching table reservation: " +
+                                  reservationId);  
+   // fetch table reservation logic
+   return tableReservation;
+}
+

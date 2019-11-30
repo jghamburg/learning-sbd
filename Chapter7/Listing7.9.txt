@@ -1,0 +1,19 @@
+Listing 7.9  The class Person aided by the class MaritalStatus
+public class Person {
+
+    private MaritalStatus maritalStatus =
+            new MaritalStatus();
+
+    public void date(Person datee) {
+        maritalStatus.date();          
+        buydrinks();
+        offerCompliments();
+    }
+
+    public void divorce() {
+        maritalStatus.divorce();       
+        ...
+    }
+    ...
+ }
+

@@ -1,0 +1,11 @@
+Listing 12.10  Order only upholds the contract notNull for the arguments
+    public void addBook(ISBN isbn, Quantity qty) {
+        notNull(isbn);
+        notNull(qty);
+        if (!isAlreadyInCart(isbn)) {
+            putInCartAsNew(isbn, qty);
+        } else{
+            addToLine(isbn, qty);
+        }
+    }
+

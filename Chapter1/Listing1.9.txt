@@ -1,0 +1,36 @@
+Listing 1.9  XML parser configuration suggested by OWASP
+import static javax.xml.XMLConstants.FEATURE_SECURE_PROCESSING;
+
+public final class XMLParser {
+  static final String DISALLOW_DOCTYPE =
+         "http://apache.org/xml/features/disallow-doctype-decl";
+  static final String ALLOW_EXT_GEN_ENTITIES =
+         "http://xml.org/sax/features/external-general-entities";
+  static final String ALLOW_EXT_PARAM_ENTITIES =
+         "http://xml.org/sax/features/external-parameter-entities";
+  static final String ALLOW_EXTERNAL_DTD =
+         "http://apache.org/xml/features/nonvalidating/load-external-dtd";
+
+  public static Document parse(final InputStream input)
+                                    throws SAXException, IOException {
+    try {
+     final DocumentBuilderFactory factory =
+                            DocumentBuilderFactory.newInstance();
+
+     factory.setExpandEntityReferences(false);       
+     factory.setFeature(FEATURE_SECURE_PROCESSING,       
+                                             true);
+     factory.setFeature(DISALLOW_DOCTYPE, true);     
+     factory.setFeature(ALLOW_EXT_GEN_ENTITIES,          
+                                            false);
+     factory.setFeature(ALLOW_EXT_PARAM_ENTITIES,    
+                                            false);
+     factory.setFeature(ALLOW_EXTERNAL_DTD, false);      
+
+     return factory.newDocumentBuilder().parse(input);
+   } catch(ParserConfigurationException e) {
+           throw new IllegalStateException("Configuration Error", e);
+   }
+  }
+}
+

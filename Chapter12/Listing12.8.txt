@@ -1,0 +1,48 @@
+Listing 12.8  Code with repeated non-null and format checks
+class ShoppingService {
+ 
+   public void addToOrder(String orderId, String isbn, int qty) {
+      Order order = orderservice.find(orderId);
+      if (isbn.matches("[0-9]{9}[0-9X]")) {         
+         order.addBook(isbn, qty);
+      }
+   }
+}
+ 
+class Order {
+   private Set<OrderLine> items;
+ 
+   public void addBook(String isbn, int qty) {
+      if (isbn != null && !isbn.isEmpty()           
+            && !isAlreadyInCart(isbn)) {
+         putInCartAsNew(isbn, qty);
+      } else {
+         addToLine(isbn, qty);
+      }
+   }
+ 
+   private void putInCartAsNew(String isbn, int quantity) {
+      if (isbn != null && isbn.matches("[0-9]{9}[0-9X]")) {
+         items.add(new OrderLine(isbn, quantity));
+      }
+   }
+ 
+   private void addToLine(String isbn, int quantity) { ... }
+ 
+   private boolean isAlreadyInCart(String isbn) {
+      boolean result = false;
+      for (OrderLine item : items) {
+         String itemISBN = item.isbn();
+         if (itemISBN != null
+               && isbn != null                      
+               && isbn.matches("[0-9]{9}[0-9X]")) { 
+            if (itemISBN.equals(isbn)) {
+               result = true;
+            }
+         }
+      }
+      return result;
+   }
+   // other methods
+}
+

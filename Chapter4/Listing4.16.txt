@@ -1,0 +1,21 @@
+Listing 4.16  XML document with book information
+<book>
+   <title>Secure by Design</title>
+   <authors>
+      <author>Dan Bergh Johnsson</author>
+      <author>Daniel Deogun</author>
+      <author>Daniel Sawano</author>
+   </authors>
+</book>
+
+Listing 4.17  Tokens found in book XML document, one token per row
+<book>   
+<title>  
+S        
+e
+c
+u
+r
+e
+...
+

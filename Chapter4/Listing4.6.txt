@@ -1,0 +1,21 @@
+Listing 4.6  CatNameList that keeps track of good names for cats
+public class CatNameList {
+    private final List<String> catNames = new ArrayList<String>();
+
+    public void queueCatName(String name) {         
+        catNames.add(name);
+    }
+
+    public String nextCatName() {                   
+        return catNames.get(0);
+    }
+
+    public void dequeueCatName() {                  
+        catNames.remove(0);
+    }
+
+    public int size() {                             
+        return catNames.size();
+    }
+} 
+

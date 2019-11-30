@@ -1,0 +1,10 @@
+Listing 7.11  OrderService with methods for updating the order in the database
+class OrderService {
+
+    public void addOrderItem(OrderID orderid,
+                        ProductID pid, Quantity qty) {
+        //...                               
+        //...                               
+    }
+}
+

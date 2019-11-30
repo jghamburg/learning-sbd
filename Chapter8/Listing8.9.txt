@@ -1,0 +1,13 @@
+Listing 8.9  Feature toggling by configuration—a simple example
+void branchByConfigurationProperty() {
+ 
+  final String isEnabled = System.getProperty("feature.enabled", "false");
+    if (Boolean.valueOf(isEnabled)) {     
+       doSomething();
+    }
+    else {
+       doSomethingElse();
+    }
+ 
+}
+

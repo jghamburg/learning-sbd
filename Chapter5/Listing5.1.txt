@@ -1,0 +1,26 @@
+Listing 5.1  The Quantity domain primitive
+import static org.apache.commons.lang3.Validate.inclusiveBetween;
+import static org.apache.commons.lang3.Validate.notNull;
+
+public final class Quantity {
+
+   private final int value;                       
+
+   public Quantity(final int value) {
+      inclusiveBetween(1, 200, value);            
+      this.value = value;
+   }
+
+   public int value() {
+      return value;
+   }
+
+   public Quantity add(final Quantity addend) {   
+      notNull(addend);
+      return new Quantity(value + addend.value);
+   }
+
+   // equals() hashCode() etc...
+
+}
+

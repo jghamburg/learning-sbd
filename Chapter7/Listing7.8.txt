@@ -1,0 +1,24 @@
+Listing 7.8  Some test cases for MaritalStatus
+public class MaritalStatusTest {
+    @Test
+    public void should_allow_dating_when_unmarried() {
+        MaritalStatus maritalStatus = new MaritalStatus();
+        maritalStatus.date();
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void should_not_allow_dating_when_married() {
+        MaritalStatus maritalStatus = new MaritalStatus();
+        maritalStatus.marry();
+        maritalStatus.date();
+    }
+
+    @Test
+    public void should_allow_dating_after_divorces() {
+        MaritalStatus maritalStatus = new MaritalStatus();
+        maritalStatus.marry();
+        maritalStatus.divorce();
+        maritalStatus.date();
+    }
+}
+

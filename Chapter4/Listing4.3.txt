@@ -1,0 +1,20 @@
+Listing 4.3  Credit score logic in the mutable Customer object
+public class Customer {
+  private static final int MIN_INVOICE_SCORE = 500;
+  private CreditScore creditScore;
+  ...
+  public synchronized void setCreditScore(
+                         CreditScore creditScore) {
+     this.creditScore = creditScore;               
+  }
+
+  public synchronized CreditScore getCreditScore() {
+     return creditScore;                           
+  }
+
+  public synchronized boolean isAcceptedForInvoicePayment() {
+     return creditScore.compute() > MIN_INVOICE_SCORE;
+  }
+  ...
+}
+

@@ -1,0 +1,5 @@
+Listing 1.5  A String argument protected by name typing
+public void register(String phoneNumber) { 
+...
+}
+

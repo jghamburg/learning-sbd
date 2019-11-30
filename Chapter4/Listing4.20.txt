@@ -1,0 +1,13 @@
+Listing 4.20  Checking an ISBN’s lexical content and syntax in one step
+import org.apache.commons.lang3.Validate.*;
+
+...
+
+    public ISBN(final String isbn) {
+        notNull(isbn);
+        inclusiveBetween(10, 10,isbn.length());
+        isTrue(isbn.matches("[0-9]{9}[0-9X]"));    
+        isTrue(checksumValid(isbn));               
+        this.isbn = isbn;
+    }
+

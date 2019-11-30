@@ -1,0 +1,28 @@
+Listing 8.6  Updated version of EmailAddress that rejects null input
+import static org.apache.commons.lang3.Validate.inclusiveBetween;
+import static org.apache.commons.lang3.Validate.isTrue;
+import static org.apache.commons.lang3.Validate.matchesPattern;
+import static org.apache.commons.lang3.Validate.notNull;
+ 
+public final class EmailAddress {
+ 
+   public final String value;
+ 
+   public EmailAddress(final String value) {
+      notNull(value, "Input cannot be null");      
+ 
+      inclusiveBetween(15, 77, value.length(),
+              "address length must be between 15 and 77 chars");
+ 
+      isTrue(value.indexOf("@") < 65,
+              "local part must be at most 64 chars");
+ 
+      matchesPattern(value.toLowerCase(),
+              "^[a-z0-9]+\\.?[a-z0-9]+@\\bhospital.com$",
+              "Illegal email address");
+ 
+      this.value = value.toLowerCase();
+   }
+   ...
+}
+

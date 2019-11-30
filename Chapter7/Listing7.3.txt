@@ -1,0 +1,4 @@
+Listing 7.3  Protecting the Order attribute custid at compile time
+Order order = ...
+order.custid = new CustomerID(...);   
+

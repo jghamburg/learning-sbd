@@ -1,0 +1,20 @@
+Listing 12.23  Summing up the purchase orders for a specific supplier
+class Money {
+    public static final Money ZERO = ...
+    private Amount amount;
+    private Currency currency;
+ 
+    public Money add(Money other) {
+        isTrue(this.currency
+                .equals(other.currency));   
+        ...
+    }
+}
+ 
+        List<PurchaseOrder> purchases =
+                procurementService.allPurchases();
+        Money sum = purchases.stream().
+                map(PurchaseOrder::price).
+                reduce(Money.ZERO, Money::add);    
+}
+

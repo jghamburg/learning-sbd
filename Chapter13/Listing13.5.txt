@@ -1,0 +1,30 @@
+Listing 13.5  Method that extracts audit data to be logged as JSON
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import static java.lang.String.format;
+ 
+private String auditData(final BookingId bookingId,
+                         final Result result,
+                         final User user) {
+    final Map<String, String> data = new HashMap<>();
+    data.put("category", "audit");                 
+    data.put("message","Failed to cancel booking");          
+    data.put("bookingId", bookingId.value());      
+    data.put("username", user.name());             
+    data.put("status", result.status());           
+    return asJson(data,                            
+            "Failure translating audit data into JSON");
+}
+ 
+private final ObjectMapper objectMapper ...        
+ 
+private String asJson(final Map<String, String> data,
+                      final String errorMessage) { 
+    try {
+      return objectMapper.writeValueAsString(data);
+    } catch (JsonProcessingException e) {
+      return format("{\"failure\":\"%s\"}",        
+                       errorMessage);
+    }
+}
+

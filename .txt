@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><CodeBlock><CodeListingCaption>Listing 4.1  Mutable Customer class</CodeListingCaption>
+<Code>public class Customer {</Code>
+<Code/>
+<Code>   public synchronized Id getId() {</Code>
+<Code>      return id;</Code>
+<Code>   }</Code>
+<Code/>
+<Code>   public synchronized void setId(final Id id) {</Code>
+<Code>      this.id = id;</Code>
+<Code>   }</Code>
+<Code/>
+<Code>   public synchronized Name getName() {</Code>
+<Code>      return name;</Code>
+<Code>   }</Code>
+<Code/>
+<Code>   public synchronized void setName(Name name) {</Code>
+<Code>      this.name = name;</Code>
+<Code>   }</Code>
+<Code/>
+<Code>   public synchronized Order getOrder() {</Code>
+<Code>      this.order = OrderService.fetchLatestOrder(id);</Code>
+<Code>      return order;</Code>
+<Code>   }</Code>
+<Code/>
+<Code>   public synchronized void setOrder(Order order) {</Code>
+<Code>      this.order = order;</Code>
+<Code>   }</Code>
+<Code/>
+<Code>   public synchronized CreditScore getCreditScore() {</Code>
+<Code>      return creditScore;</Code>
+<Code>   }</Code>
+<Code/>
+<Code>   public synchronized void setCreditScore(CreditScore creditScore){</Code>
+<Code>   }</Code>
+<Code/>
+<Code>   public synchronized boolean isAcceptedForInvoicePayment() {</Code>
+<Code>      return creditScore.compute() &gt;</Code>
+<Code>   }</Code>
+<Code>   ...</Code>
+<Code>}</Code>
+</CodeBlock>

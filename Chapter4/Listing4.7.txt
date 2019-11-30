@@ -1,0 +1,11 @@
+Listing 4.7  Enforcing fail fast of contract preconditions
+public void queueCatName(String name) {
+    if (name == null)                              
+        throw new NullPointerException();
+    if (!name.matches(".*s.*"))                    
+        throw new IllegalArgumentException("Must contain s");
+    if (catNames.contains(name))                   
+        throw new IllegalArgumentException("Already queued");
+    catNames.add(name);
+}
+

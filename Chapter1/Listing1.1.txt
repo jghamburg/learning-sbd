@@ -1,0 +1,13 @@
+Listing 1.1  Simple User class
+public class User {
+   private final Long id;
+   private final String username;
+
+   public User(final Long id, final String username) {
+      this.id = id;
+      this.username = username;   
+   }
+
+   // ...
+}
+

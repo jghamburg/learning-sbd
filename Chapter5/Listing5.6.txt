@@ -1,0 +1,21 @@
+Listing 5.6  Domain primitive ISBN including validation logic
+import org.apache.commons.lang3.Validate.*;
+
+public class ISBN {
+    private final String isbn;
+
+    public ISBN(final String isbn) {             
+        notNull(isbn);
+        isTrue(isbn.length() == 10);
+        isTrue(isbn.matches("[0-9X]*"));
+        isTrue(isbn.matches("[0-9]{9}[0-9X]"));
+        isTrue(checksumValid(isbn));             
+        this.isbn = isbn;
+    }
+
+    private boolean checksumValid(String isbn) {
+        // ...
+    }
+    ...
+}
+

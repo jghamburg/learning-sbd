@@ -1,0 +1,79 @@
+Listing 8.11  Testing the toggle in OrderService
+import org.junit.Test;
+ 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
+ 
+public class OrderServiceToggleTests {
+ 
+   @Test
+   public void should_process_order_if_old_order_mode_is_enabled() {
+      givenOrderModeIs(OLD);
+ 
+      whenPlacingAnOrder();
+ 
+      thenOrderShouldBeProcessed();                
+   }
+ 
+   @Test
+   public void should_not_send_to_BI_if_old_order_mode_is_enabled() {
+      givenOrderModeIs(OLD);
+ 
+      whenPlacingAnOrder();
+ 
+      thenOrderShouldNotBeSentToBI();              
+   }
+ 
+   @Test
+   public void should_process_order_if_new_order_mode_is_enabled() {
+      givenOrderModeIs(NEW);
+ 
+      whenPlacingAnOrder();
+ 
+      thenOrderShouldBeProcessed();                
+   }
+ 
+   @Test
+   public void should_send_to_BI_if_new_order_mode_is_enabled() {
+      givenOrderModeIs(NEW);
+ 
+      whenPlacingAnOrder();
+ 
+      thenOrderShouldBeSentToBI();                 
+   }
+ 
+   private ToggleService toggleService;
+   private OrderBackend orderBackend;
+   private BIBackend biBackend;
+ 
+   private void givenOrderModeIs(final OrderMode orderMode) {
+      toggleService = new ToggleService();
+      toggleService.setOrderMode(orderMode);
+   }
+ 
+   private void whenPlacingAnOrder() {
+      createOrderService().placeOrder(new Order());
+   }
+ 
+   private OrderService createOrderService() {
+      orderBackend = mock(OrderBackend.class);     
+      biBackend = mock(BIBackend.class);           
+      return new OrderService(orderBackend,
+                              biBackend,
+                              toggleService);
+   }
+ 
+   private void thenOrderShouldBeProcessed() {
+      verify(orderBackend).process(any(Order.class)); 
+   }
+ 
+   private void thenOrderShouldNotBeSentToBI() {
+      verifyZeroInteractions(biBackend);           
+   }
+ 
+   private void thenOrderShouldBeSentToBI() {
+      verify(biBackend).record(any(Order.class));  
+   }
+ 
+}
+

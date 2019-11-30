@@ -1,0 +1,8 @@
+Listing 12.3  The direct approach: replace all at once
+public void shipItems(final ItemId itemId,
+                      final Quantity quantity,
+                      final BillingAddress billing,
+                      final ShippingAddress to) {  
+  // ...
+}
+

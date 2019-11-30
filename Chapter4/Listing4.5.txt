@@ -1,0 +1,18 @@
+Listing 4.5  Immutable CreditScore class
+import static org.apache.commons.lang3.Validate.isTrue;
+
+public class CreditScore {
+   private static final int MIN_INVOICE_SCORE = 500;
+   private final int score;
+
+   public CreditScore(final int computedCreditScore) {
+      isTrue(computedCreditScore > -1, "Credit score must be > -1");
+      this.score = computedCreditScore;            
+   }
+
+   public boolean isAcceptedForInvoicePayment() {
+      return score > MIN_INVOICE_SCORE;
+   }
+   ...
+}
+

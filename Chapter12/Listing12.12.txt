@@ -1,0 +1,5 @@
+Listing 12.12  Searching for the ISBN
+    private boolean isAlreadyInCart(final ISBN isbn) {
+        return items.stream().anyMatch(item -> item.isbn().equals(isbn));
+    }
+

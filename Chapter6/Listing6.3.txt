@@ -1,0 +1,37 @@
+Listing 6.3  Account class with a fluent interface
+public class Account {
+    private final AccountNumber number;
+    private final LegalPerson owner;
+    private Percentage interest;
+    private Money creditLimit;
+    private AccountNumber fallbackAccount;
+
+    public Account(AccountNumber number,
+        LegalPerson owner,
+        Percentage interest) {
+        ...                                      
+    }
+
+    public Account withCreditLimit(Money creditLimit) {
+        this.creditLimit = creditLimit;
+        return this;                             
+    }
+
+    public Account withFallbackAccount(AccountNumber fallbackAccount) {
+        this.fallbackAccount = fallbackAccount;
+        return this;                             
+    }
+}
+
+class AccountService {
+
+    void openAccount() {
+        Account account = new Account(number,
+                                      accountowner,
+                                      interest)    
+                            .withCreditLimit(limit)
+                            .withFallbackAccount(fallbackAccount);
+        ...
+    }
+}
+

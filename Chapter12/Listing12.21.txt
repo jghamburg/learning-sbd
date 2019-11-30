@@ -1,0 +1,9 @@
+Listing 12.21  Sending off a payment to a bank, fetching currency out of thin air
+public void payPurchase(PurchaseOrder po) {
+    Account account = po.supplier().account();
+    Amount amount = po.price();                     
+    Currency curr =
+        supplierservice.currencyFor(po.supplier()); 
+    bankservice.initializePayment(account, amount, curr);
+}
+

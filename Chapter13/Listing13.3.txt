@@ -1,0 +1,20 @@
+Listing 13.3  Cancel booking logic using a logger with a domain-oriented API
+import static org.apache.commons.lang3.Validate.notNull;
+ 
+public Result cancel(final BookingId bookingId, final User user) {
+    notNull(bookingId);
+    notNull(user);
+ 
+    logger.cancelBooking(bookingId, user);         
+ 
+    final Result result = bookingsRepository.cancel(bookingId);
+ 
+    if (result.isBookingCanceled()) {
+        logger.bookingCanceled(bookingId, user);  
+    } else {
+        logger.bookingCancellationFailed(
+                        bookingId, result, user);  
+    }
+    return result;
+}
+

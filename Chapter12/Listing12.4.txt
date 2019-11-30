@@ -1,0 +1,48 @@
+Listing 12.4  The discovery approach: fix the problems first
+public void shipItems(final int itemId, final int quantity,
+                      final Address billing, final Address to) {
+  tryCreateItemId(itemId);                          
+  tryCreateQuantity(quantity);                      
+  tryCreateBillingAddress(billing);                 
+  tryCreateShippingAddress(to);                     
+ 
+   // ...
+}
+ 
+private void tryCreateItemId(final int itemId) {
+  try {
+      new ItemId(itemId);
+  } catch (final Exception e) {
+      logError("Error while creating ItemId", e);   
+  }
+}
+ 
+private void tryCreateQuantity(final int quantity) {
+  try {
+      new Quantity(quantity);
+  } catch (final Exception e) {
+      logError("Error while creating Quantity", e); 
+  }
+}
+ 
+// other tryCreate methods...
+ 
+import static org.apache.commons.lang3.Validate.isTrue;
+ 
+public class ItemId {                               
+   private final int value;
+ 
+   public ItemId(final int value) {
+      isTrue(value > 0, "An item id must be greater than 0");
+      this.value = value;
+   }
+ 
+   public int value() {
+      return value;
+   }
+ 
+   // domain operations, equals(), hashcode(), toString(), and so on
+}
+ 
+// other domain primitives...
+

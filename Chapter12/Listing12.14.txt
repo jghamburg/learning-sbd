@@ -1,0 +1,11 @@
+Listing 12.14  No repetition of knowledge, although same regexp used twice
+    BookDelivery(String ordernumber, String recipient,
+                String streetaddress, String zipcode) {
+ 
+        this.ordernumber = notNull(ordernumber);
+        matchesPattern(ordernumber, "[0-9]{5}");   
+        this.zipcode = notNull(zipcode);
+        matchesPattern(zipcode, "[0-9]{5}");       
+        ...
+    }
+

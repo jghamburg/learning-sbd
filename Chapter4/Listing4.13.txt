@@ -1,0 +1,7 @@
+Listing 4.13  Calling the REST API of AWS using access key and signature14
+GET /photos/puppy.jpg HTTP/1.1
+Host: johnsmith.s3.amazonaws.com
+Date: Mon, 26 Mar 2007 19:37:58 +0000
+
+Authorization: AWS AKIAIOSFODNN7EXAMPLE:frJIUN8DYpKDtOLCwo//yllqDzg=
+

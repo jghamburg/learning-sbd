@@ -1,0 +1,11 @@
+Listing 12.11  Updated isAlreadyInCart
+    private boolean isAlreadyInCart(ISBN isbn) {
+        boolean result = false;
+        for (OrderLine item : items) {
+            if (item.isbn().equals(isbn)) {
+                result = true;
+            }
+        }
+        return result;
+    }
+

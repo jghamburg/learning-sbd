@@ -1,0 +1,9 @@
+Listing 12.18  A table reservation is fetched by ID
+public TableReservation fetch(final String reservationId) {
+   logger.info("Fetching table reservation: " + reservationId);
+   final TableReservation tableReservation =
+            repository.reservation(reservationId); 
+   logger.info("Received " + tableReservation);
+   return tableReservation;
+}
+

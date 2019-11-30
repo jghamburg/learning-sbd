@@ -1,0 +1,39 @@
+Listing 5.7  Order using Quantity
+class Order {
+
+    public void addItem(ISBN isbn, Quantity qty) { 
+        Validate.notNull(isbn);
+        Validate.notNull(qty);
+
+        if(this.paid == false) {        
+            Book book =
+                bookcatalogue.findByISBN(isbn); 
+            if (inventory.avaliableBooks(isbn)
+                .greaterOrEqualTo(qty)) {       
+                addToItems(new OrderLine(book, qty));
+            }
+        }
+    }
+
+    private void addToItems(OrderLine bookQuantity) {
+        ...        
+        items.add(new OrderLine(book, qty));
+        ...
+    }
+}
+
+
+class ShoppingFlow {
+
+    void handleOrderAdd() {
+        ...
+        String isbn = ...
+        int qty = ...
+        ...
+        order.addItem(new ISBN(isbn),
+                      new Quantity(qty));       
+
+       ...
+    }
+}
+

@@ -1,0 +1,38 @@
+Listing 5.5  Order entity that does a lot in its addItem method
+import org.apache.commons.lang3.Validate;
+
+class Order {
+   private BookRepository bookCatalog;
+   private ArrayList<Object> items;
+   private boolean paid = false;
+   Inventory inventory;
+
+   public void addItem(String isbn, int qty) {
+      if(this.paid == false) {                       
+         notNull(isbn);                              
+         isTrue(isbn.length() == 10);                
+         isTrue(isbn.matches("[0-9X]*"));            
+         isTrue(isbn.matches("[0-9]{9}[0-9X]"));     
+         Book book = bookCatalog.findByISBN(isbn);   
+         if(inventory.avaliableBooks(isbn) >= qty)){ 
+            items.add(new OrderLine(book, qty));     
+         }
+      }
+   }
+   ...
+}
+
+class ShoppingFlow {
+
+    void handleOrderAdd() {                      
+        ...
+        String isbnText = ...
+        int qty = Integer.parseInt(qtyText);
+        ...                                      
+        order.addItem(isbn, qty);
+       ...
+
+    }
+
+}
+

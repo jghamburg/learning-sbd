@@ -1,0 +1,12 @@
+Listing 4.8  Using  Validate to enforce preconditions
+import org.apache.commons.lang3.Validate.*;
+...
+public void queueCatName(String name) {
+    notNull(name);                                 
+    matchesPattern(name,".*s.*",
+                   "Cat name must contain s");     
+    isTrue(!catNames.contains(name),
+           "Cat name already queued");             
+    catNames.add(name);
+}
+

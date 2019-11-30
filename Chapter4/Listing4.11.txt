@@ -1,0 +1,6 @@
+Listing 4.11  Enforcing state when looking at next name
+public String nextCatName() {
+    validState(!catNames.isEmpty());    
+    return catNames.get(0);
+}
+

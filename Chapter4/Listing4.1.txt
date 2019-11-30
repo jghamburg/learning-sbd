@@ -1,0 +1,48 @@
+Listing 4.1  Mutable Customer class
+public class Customer {
+   private static final int MIN_INVOICE_SCORE = 500;
+   private Id id;                                 
+   private Name name;                             
+   private Order order;                           
+   private CreditScore creditScore;               
+
+   public synchronized Id getId() {
+      return id;
+   }
+
+   public synchronized void setId(final Id id) {
+      this.id = id;
+   }
+
+   public synchronized Name getName() {
+      return name;
+   }
+
+   public synchronized void setName(Name name) {
+      this.name = name;
+   }
+
+   public synchronized Order getOrder() {
+      this.order = OrderService.fetchLatestOrder(id);
+      return order;
+   }
+
+   public synchronized void setOrder(Order order) {
+      this.order = order;
+   }
+
+   public synchronized CreditScore getCreditScore() {
+      return creditScore;
+   }
+
+   public synchronized void setCreditScore(CreditScore creditScore){
+      this.creditScore = creditScore;            
+   }
+
+   public synchronized boolean isAcceptedForInvoicePayment() {
+      return creditScore.compute() >
+                             MIN_INVOICE_SCORE;  
+   }
+   ...
+}
+

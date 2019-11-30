@@ -1,0 +1,7 @@
+Listing 12.13  Taking account for Optional.EMPTY gives convoluted code
+Address anAddr;
+Optional<Address> perhapsAddr;
+ 
+Zip anZip = anAddr.zip();
+Optional<Zip> perhapsZip = perhapsAddr.map(Address::zip);
+

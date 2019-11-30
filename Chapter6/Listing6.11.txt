@@ -1,0 +1,10 @@
+Listing 6.11  Person class that returns a clone of birthdate
+class Person {
+
+    private Date birthdate;
+
+    Date birthdate() {
+        return birthdate.clone(); 
+    }
+}
+

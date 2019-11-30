@@ -1,0 +1,9 @@
+Listing 9.7  Including sensitive data in a technical exception
+import static java.lang.String.format;
+ 
+catch (SQLException e) {
+   throw new IllegalStateException(
+         format("Unable to retrieve account %s for %s",
+             accountNumber.value(), customer), e); 
+}
+

@@ -1,0 +1,22 @@
+Listing 12.5  The new API approach: incremental refactoring
+import static org.apache.commons.lang3.Validate.notNull;
+ 
+public void shipItems(final ItemId itemId,          
+                      final Quantity quantity,
+                      final BillingAddress billing,
+                      final ShippingAddress to) {
+   notNull(itemId);
+   notNull(quantity);
+   notNull(billing);
+   notNull(to);
+ 
+   shipItems(itemId.value(), quantity.value(),      
+             billing.address(), to.address());
+}
+ 
+@Deprecated
+public void shipItems(int itemId, int quantity,
+                     Address billing, Address to) { 
+   // ...
+}
+

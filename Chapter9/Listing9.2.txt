@@ -1,0 +1,27 @@
+Listing 9.2  Intermixing business and technical exceptions using the same type
+import static java.lang.String.format;
+import static org.apache.commons.lang3.Validate.notNull;
+ 
+public Account fetchAccountFor(final Customer customer,
+                               final AccountNumber accountNumber) {
+   notNull(customer);
+   notNull(accountNumber);
+ 
+   try {
+      return accountDatabase
+            .selectAccountsFor(customer)            
+            .stream()
+            .filter(account ->
+                    account.number().equals(accountNumber)) 
+            .findFirst()                            
+            .orElseThrow(
+              () -> new IllegalStateException(      
+                      format("No account matching %s for %s",
+                             accountNumber.value(), customer)));
+   } catch (SQLException e) {                       
+      throw new IllegalStateException(              
+            format("Unable to retrieve account %s for %s",
+                   accountNumber.value(), customer), e);
+   }
+}
+

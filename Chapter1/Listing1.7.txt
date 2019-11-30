@@ -1,0 +1,8 @@
+Listing 1.7  XML after entity expansion
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE example [
+<!ELEMENT example (#PCDATA)>
+<!ENTITY title "Secure by Design">
+]>
+<example>Secure by Design</example>  
+

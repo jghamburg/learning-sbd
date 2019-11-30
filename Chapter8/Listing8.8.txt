@@ -1,0 +1,19 @@
+Listing 8.8  Feature toggling by code in its most rudimentary form
+void usingOldImplementation() {
+ 
+   doSomething();
+   callOldFunctionality();           
+   //callNewFunctionality();         
+   doSomethingElse();
+ 
+}
+ 
+void usingNewImplementation() {
+ 
+   doSomething();
+   //callOldFunctionality();         
+   callNewFunctionality();           
+   doSomethingElse();
+ 
+}
+

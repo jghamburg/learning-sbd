@@ -1,0 +1,5 @@
+Listing 8.12  Simple example of configuring a test running a DDoS attack
+bees up -s 8 -g public -k your_ssh_key       
+bees attack -n 100000 -c 500 -u website_url  
+bees down                                    
+

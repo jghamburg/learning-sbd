@@ -1,0 +1,40 @@
+Listing 6.1  Account class with no-arg construction and setter initialization
+public class Account {
+    private AccountNumber number;            
+    private LegalPerson owner;               
+    private Percentage interest;             
+    private Money creditLimit;               
+    private AccountNumber fallbackAccount;   
+
+    public Account() {}             
+
+    public AccountNumber getNumber() {
+        return number;
+    }
+
+    public void setNumber(AccountNumber number) { 
+        this.number = number;
+    }
+
+    public LegalPerson getOwner() {
+        return owner;
+    }
+
+    public void setOwner(LegalPerson owner) {   
+        this.owner = owner;
+    }
+    ...
+}
+
+class AccountService {
+
+    void openAccount() {
+        Account account= new Account();         
+        account.setNumber(number);              
+        account.setOwner(accountowner);         
+        account.setInterest(interest);          
+        account.setCreditLimit(limit);          
+        ...
+    }
+}
+

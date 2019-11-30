@@ -1,0 +1,8 @@
+Listing 12.22  Fetching currency and amount from the same conceptual whole
+public void payPurchase(PurchaseOrder po) {
+    Account account = po.supplier().account();
+    Amount amount = po.price().amount();    
+    Currency curr = po.price().currency();  
+    bankservice.initializePayment(account, amount, curr);
+}
+

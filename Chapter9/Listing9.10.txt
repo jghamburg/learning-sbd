@@ -1,0 +1,19 @@
+Listing 9.10  The name domain primitive
+import static org.apache.commons.lang3.Validate.inclusiveBetween;
+import static org.apache.commons.lang3.Validate.matchesPattern;
+import static org.apache.commons.lang3.Validate.notBlank;
+ 
+public final class Name {
+   private final String value;
+ 
+   public Name(final String value) {
+      notBlank(value);                             
+      inclusiveBetween(2, 100, value.length(),     
+          "Invalid length. Got: " + value.length());
+      matchesPattern(value,"^[a-zA-Z ]+[a-zA-Z]+$",
+                     "Invalid name. Got: " + value);
+      this.value = value;
+   }
+   ...
+}
+

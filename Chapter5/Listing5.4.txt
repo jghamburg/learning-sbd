@@ -1,0 +1,46 @@
+Listing 5.4  Password represented as a read-once domain primitive
+import static org.apache.commons.lang3.Validate.validState;
+
+public final class Password implements Externalizable {
+
+   private final char[] value;
+   private boolean consumed = false;
+
+   public Password(final char[] value) {
+      this.value = validate(value).clone();          
+   }
+
+   public synchronized char[] value() {               
+      validState(!consumed, "Password value has already been consumed");
+      final char[] returnValue = value.clone();      
+      Arrays.fill(value, '0');                        
+      consumed = true;                               
+      return returnValue;
+   }
+
+   @Override
+   public String toString() {
+      return "Password{value=*****}";
+   }
+
+   @Override
+   public void writeExternal(final ObjectOutput out) {
+      deny();
+   }
+
+   @Override
+   public void readExternal(final ObjectInput in) {
+      deny();
+   }
+
+   private static void deny() {
+      throw new UnsupportedOperationException(
+            "Serialization of passwords is not allowed");
+   }
+
+   private static char[] validate(final char[] value) {
+      // Validate length, characters and so forth
+      return value;
+   }
+}
+

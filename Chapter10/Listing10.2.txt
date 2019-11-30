@@ -1,0 +1,15 @@
+Listing 10.2  Resource file with configuration for all environments
+environments:
+    dev:                              
+      cms:
+          port: 34633                 
+          connection-timeout: 5000    
+          username: dev-service-A     
+          password: spring2019        
+    prod:                             
+      cms:
+          port: 34633                 
+          connection-timeout: 1000    
+          username: service-A         
+          password: yC6@SX5O          
+

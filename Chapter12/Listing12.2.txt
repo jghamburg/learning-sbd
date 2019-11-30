@@ -1,0 +1,9 @@
+Listing 12.2  Accidentally swapping parameters
+int idOfItemToBuy = 78549;
+int quantity = 67;
+Address billingAddress = new Address("Office St", 42, "94 102");
+Address shippingAddress = new Address("Factory Rd", 2, "94 129");
+ 
+service.shipItems(quantity, idOfItemToBuy,         
+                  shippingAddress, billingAddress);
+

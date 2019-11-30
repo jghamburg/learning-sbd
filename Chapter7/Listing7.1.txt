@@ -1,0 +1,10 @@
+Listing 7.1  Naive implementation of withdraw in class Account
+void withdraw(Money amount) {
+    if(this.balance.moreThan(amount)) {         
+        Money newBalance = this.balance.subtract(amount); 
+        this.balance = newBalance;              
+     } else {
+        throw new InsufficientFundsException();
+     }
+}
+

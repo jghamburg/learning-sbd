@@ -1,0 +1,7 @@
+Listing 6.5  Changing from a credit limit to a fallback account
+    public void changeToFallbackAccount(AccountNumber fallbackAccount) {
+        this.creditLimit = null;                     
+        this.fallbackAccount = fallbackAccount;      
+        checkInvariants();                           
+    }
+

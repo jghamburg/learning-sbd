@@ -1,0 +1,13 @@
+Listing 4.14  ISBN class containing a check that the number is short enough
+import org.apache.commons.lang3.Validate.*;
+
+public class ISBN {
+    private final String isbn;
+
+    public ISBN(final String isbn) {
+        notNull(isbn);                             
+        inclusiveBetween(10, 10,isbn.length());    
+        this.isbn = isbn;                          
+    }
+}
+

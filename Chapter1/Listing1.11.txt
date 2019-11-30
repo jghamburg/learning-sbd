@@ -1,0 +1,11 @@
+Listing 1.11  XML example representing a customer object
+<customer>
+      <phone>212-111-2222</phone>
+      <email>jane.doe@example.com</email>
+      <address>
+         <street>Fifth Ave</street>
+         <city>New York</city>
+         <country>USA</country>
+      </address>
+</customer>
+

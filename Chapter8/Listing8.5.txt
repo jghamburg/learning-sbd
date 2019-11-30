@@ -1,0 +1,34 @@
+Listing 8.5  Testing with invalid input
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.DynamicTest.dynamicTest;
+ 
+class EmailAddressTest {
+   @TestFactory
+   Stream<DynamicTest> should_reject_invalid_input() {
+      return Stream.of(
+            null,                                  
+            "null",                                
+            "nil",                                 
+            "0",                                   
+            "",                                    
+            " ",                                   
+            "\t",                                  
+            "\n",                                  
+            "john.doe\n@hospital.com",             
+            "   @hospital.com",                    
+            "%20@hospital.com",                    
+            "john.d%20e@hospital.com",             
+            "john..doe@hospital.com",              
+            "--",                                  
+            "e x a m p l e @ hospital . c o m",    
+            "=0@$*^%;<!->.:\\()&#\"",              
+            "©@£$∞§|[]≈±´•Ωé®†µüıœπ˙~ß∂¸√ç‹›‘’‚…") 
+            .map(input ->
+               dynamicTest("Rejected: " + input,
+                  () -> assertThrows(              
+                           RuntimeException.class,
+                           () -> new EmailAddress(input))));
+   }
+}
+

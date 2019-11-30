@@ -1,0 +1,8 @@
+Listing 4.10  Enforcing contract for constructor, condensed version
+public Cat(String name, Sex sex) {
+    this.name = notNull(name);                     
+    this.sex = notNull(sex);                       
+    matchesPattern(name,".*s.*",
+                   "Cat name must contain s");     
+}
+

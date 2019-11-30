@@ -1,0 +1,8 @@
+Listing 6.13  Copy constructor to return a copy of the list of order items
+class Order {
+    private List<OrderLine> orderitems;       
+    public List<OrderLine> getOrderItems() {
+        return new ArrayList(orderitems);     
+    }
+}
+

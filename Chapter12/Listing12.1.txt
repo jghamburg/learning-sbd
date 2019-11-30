@@ -1,0 +1,21 @@
+Listing 12.1  Method with ambiguous parameter list
+public void shipItems(int itemId, int quantity,     
+                     Address billing, Address to) { 
+  // ...
+}
+ 
+public class Address {
+  private final String street;
+  private final int number;
+  private final String zipCode;
+ 
+  public Address(final String street, final int number,
+                 final String zipCode) {
+    this.street = street;
+    this.number = number;
+    this.zipCode = zipCode;
+  }
+ 
+   // ...
+}
+

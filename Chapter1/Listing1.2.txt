@@ -1,0 +1,19 @@
+Listing 1.2  User class with input validation
+import static com.example.xss.ValidationUtils.validateForXSS;
+import static org.apache.commons.lang3.Validate.notNull;
+
+public class User {
+   private final Long id;
+   private final String username;
+
+   public User(final Long id, final String username) {
+      notNull(id);               
+      notNull(username);         
+
+      this.id = notNull(id);
+      this.username = validateForXSS(username);   
+   }
+
+   // ...
+}
+

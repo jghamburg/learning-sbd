@@ -1,0 +1,9 @@
+Listing 6.12  Violating integrity by working on the list from outside
+void addFreeShipping(Order order) {
+    if(order.value().greaterThan(FREE_SHIPPING_LIMIT) {
+        List<OrderLine> orderlines = order.orderItems();
+        orderlines.add(                         
+            new OrderLine(SHIPPING_VOUCHER, 1));
+    }
+}
+

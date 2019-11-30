@@ -1,0 +1,26 @@
+Listing 7.4  Entity state rule upheld by a service method
+public class Person {
+    private final boolean married;
+    public Person(boolean married) {
+        this.married = married;
+    }
+    public boolean isMarried() {
+        return married;
+    }
+    public void date(Person datee) {} 
+}
+
+public class Work {
+    private Person boss;
+    private Person employee;
+
+    void afterwork() {
+        // boss attempts to date
+        if (!boss.isMarried()) {      
+            boss.date(employee);
+        } else {                      
+            logger.warn("bad egg");
+        }
+    }
+}
+

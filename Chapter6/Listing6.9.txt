@@ -1,0 +1,19 @@
+Listing 6.9  Data field not really protected when there is a setter method
+class Order {
+    private CustomerID custid;
+    private List<OrderLine> orderitems;
+    private Addr billingaddr;
+    private Addr shippingaddr;
+    private boolean paid;       
+    private boolean shipped;
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;       
+    }
+    public boolean getPaid() { return paid; }
+}
+
+Order order = ...
+order.paid = true;              
+order.setPaid(true);            
+

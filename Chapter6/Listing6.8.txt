@@ -1,0 +1,7 @@
+Listing 6.8  Integrating invariants check with an ORM framework
+@PostLoad                                      
+private void checkInvariants() throws IllegalStateException {
+    Validate.isTrue(fallbackAccount != null
+                ^ creditLimit != null);    
+}
+

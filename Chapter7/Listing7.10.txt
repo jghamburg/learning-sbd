@@ -1,0 +1,39 @@
+Listing 7.10  Class OrderSnapshot
+import static org.apache.commons.lang3.Validate.*;
+
+public class OrderSnapshot {                     
+    public final OrderID orderid;
+    public final CustomerID custid;
+    private final List<OrderItem> orderItemList;
+
+    public OrderSnapshot(OrderID orderid;
+                            CustomerID custid,
+                            List<OrderItem> orderItemList) {
+        this.orderid = notNull(orderid);
+        this.custid = notNull(custid);
+        this.orderItemList =
+            Collections
+                .unmodifiableList(
+                    notNull(orderItemList));     
+        checkBusinessRuleInvariants();
+    }
+
+    public List<OrderItem> orderItems() {
+        return orderItemList;                    
+    }
+
+    public int nrItems() {                       
+        ...
+    }
+
+    private void checkBusinessRuleInvariants() {
+        validState(nrItems() <= 38, "Too large for ordinary shipping");
+    }
+
+}                                                
+
+public class OrderService {
+    public OrderSnapshot findOrder(OrderID orderid) ...
+    public List<OrderSnapshot> findOrdersByCustomer(CustomerID custid) ...
+}
+

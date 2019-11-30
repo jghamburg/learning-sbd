@@ -1,0 +1,25 @@
+Listing 9.5  Explicitly defining a domain exception to signal that no account is found
+import static java.lang.String.format;
+import static org.apache.commons.lang3.Validate.notNull;
+ 
+private final AccountDatabase accountDatabase;
+ 
+public Account fetchAccountFor(final Customer customer,
+                               final AccountNumber accountNumber) {
+   notNull(customer);
+   notNull(accountNumber);
+ 
+   try {
+      return accountDatabase
+            .selectAccountsFor(customer).stream()
+            .filter(account -> account.number().equals(accountNumber))
+            .findFirst()
+            .orElseThrow(() ->
+                new AccountNotFound(accountNumber,customer));    
+   } catch (SQLException e) {
+      throw new IllegalStateException(
+            format("Unable to retrieve account %s for %s",
+                   accountNumber.value(), customer), e);
+   }
+}
+

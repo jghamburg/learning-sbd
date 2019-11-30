@@ -1,0 +1,19 @@
+Listing 9.4  An explicit domain exception signifying that no account has been found
+import static org.apache.commons.lang3.Validate.notNull;
+ 
+public abstract class AccountException extends
+                               RuntimeException {} 
+ 
+public class AccountNotFound extends
+                               AccountException {  
+   private final AccountNumber accountNumber;
+   private final Customer customer;
+ 
+   public AccountNotFound(final AccountNumber accountNumber,
+                          final Customer customer) {
+      this.accountNumber = notNull(accountNumber);
+      this.customer = notNull(customer);
+   }
+   ...
+}
+

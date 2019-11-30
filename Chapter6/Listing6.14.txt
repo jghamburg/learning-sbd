@@ -1,0 +1,12 @@
+Listing 6.14  Exporting unmodifiable collections to protect internals
+class Order {
+    private CustomerID custId;
+    private List<OrderLine> orderitems;    
+    public List<OrderLine> orderItems() {  
+        return new Collections.unmodifiableList(orderitems);
+    }
+}
+
+List<OrderItem> items = order.orderItems();      
+items.add(new OrderItem(SHIPPING_VOUCHER, 1));   
+

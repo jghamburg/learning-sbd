@@ -1,0 +1,9 @@
+Listing 10.1  Content management system connector class with secret values
+public class CMSConnector {
+   private static int PORT_NUMBER = 34633;
+   private static long CONNECTION_TIMEOUT = 5000;
+   private static String USERNAME = "service-A";   
+   private static String PASSWORD = "yC6@SX5O";    
+   ...
+}
+

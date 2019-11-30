@@ -1,0 +1,13 @@
+Listing 13.2  Introducing a new requirement in the API
+public interface CustomerManagementApiV3 {
+ 
+   void addLegalAgreement(CustomerId id, AgreementId agreementId);
+ 
+   void addConfirmedPayment(ConfirmedPaymentId confirmedPaymentId);
+ 
+   void welcomeCallPerformed(CustomerId id);       
+ 
+   boolean isActivated(CustomerId id);             
+ 
+}
+

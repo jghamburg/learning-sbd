@@ -1,0 +1,19 @@
+Listing 4.4  CreditScore class
+public class CreditScore {
+   private Id id;
+
+   public synchronized void setCustomerId(Id id) { 
+      this.id = id;
+   }
+
+   public synchronized int compute() {
+      List<Record> history =
+          BillingService.fetchBillingHistory(id);  
+      Membership membership =
+          MembershipService.fetchMembership(id);   
+      return CreditScoreEngine.compute(id, history, 
+                                       membership);
+   }
+   ...
+}
+

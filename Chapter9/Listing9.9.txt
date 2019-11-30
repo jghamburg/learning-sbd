@@ -1,0 +1,64 @@
+Listing 9.9  Expected results not modeled as exceptional
+import static Result.Failure.INSUFFICIENT_FUNDS;
+import static Result.success;
+import static org.apache.commons.lang3.Validate.notNull;
+ 
+public final class Account {
+ 
+  public Result transfer(final Amount amount,
+                         final Account toAccount) {
+     notNull(amount);
+     notNull(toAccount);
+ 
+     if (balance().isLessThan(amount)) {           
+        return INSUFFICIENT_FUNDS.failure();       
+     }
+ 
+     return executeTransfer(amount, toAccount);    
+  }
+ 
+  public Amount balance() {
+     return calculateBalance();
+  }
+ 
+  // ...
+}
+ 
+-------------------------------------------------
+ 
+import java.util.Optional;
+ 
+public final class Result {
+ 
+   public enum Failure {
+      INSUFFICIENT_FUNDS,                          
+      SERVICE_NOT_AVAILABLE;
+ 
+      public Result failure() {
+         return new Result(this);
+      }
+   }
+ 
+   public static Result success() {
+      return new Result(null);
+   }
+ 
+   private final Failure failure;
+ 
+   private Result(final Failure failure) {
+      this.failure = failure;
+   }
+ 
+   public boolean isFailure() {
+      return failure != null;
+   }
+ 
+   public boolean isSuccess() {
+      return !isFailure();
+   }
+ 
+   public Optional<Failure> failure() {
+      return Optional.ofNullable(failure);
+   }
+}
+
